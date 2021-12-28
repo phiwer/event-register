@@ -1,27 +1,36 @@
 package com.phiwer.eventregister.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.sun.istack.NotNull;
+
+import javax.persistence.*;
 
 @Entity
 public class User {
 
     @Id
-    @GeneratedValue(strategy =  GenerationType.SEQUENCE)
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private long id;
 
-    private final String name;
+1    @Column(name = "first_name")
+    private final String firstName;
+
+    @NotNull
+    @Column(name = "last_name")
+    private final String lastName;
+
+    @NotNull
+    @Column(name = "email")
     private final String email;
 
-    public User(String name, String email) {
-        this.name = name;
+    public User(String firstName, String lastName, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
     }
 
     protected User() {
-        name = "";
+        firstName = "";
+        lastName = "";
         email = "";
     }
 }

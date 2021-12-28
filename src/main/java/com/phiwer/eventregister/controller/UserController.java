@@ -2,7 +2,6 @@ package com.phiwer.eventregister.controller;
 
 import com.phiwer.eventregister.domain.User;
 import com.phiwer.eventregister.domain.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -2,6 +2,7 @@ package com.phiwer.eventregister;
 
 import com.phiwer.eventregister.domain.User;
 import com.phiwer.eventregister.domain.UserRepository;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,10 +20,16 @@ public class EventRegisterApplication {
     @Bean
     CommandLineRunner init(UserRepository userRepository) {
         return args -> {
-            Stream.of("John", "Julie", "Jennifer", "Helen", "Rachel").forEach(name -> {
-                User user = new User(name, name.toLowerCase() + "@domain.com");
-                userRepository.save(user);
-            });
+            Stream.of(
+                            new ImmutablePair<>("John", "Doe"),
+                            new ImmutablePair<>("Julie", "Dawson"),
+                            new ImmutablePair<>("Jennifer", "Johnson"),
+                            new ImmutablePair<>("Helen", "Davidson"),
+                            new ImmutablePair<>("Rachel", "Larsson"))
+                    .forEach(name -> {
+                        User user = new User(name.getLeft(), name.getRight(), name.getRight() + "@domain.com");
+                        userRepository.save(user);
+                    });
             userRepository.findAll().forEach(System.out::println);
         };
     }
